@@ -9,6 +9,9 @@
     "dev": "npx nodemon src/app.ts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+  "prisma": {
+    "seed": "ts-node --transpile-only prisma/seed.ts"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/macielvini/book-review.git"
@@ -24,7 +27,8 @@
     "cors": "^2.8.5",
     "env": "^0.0.2",
     "express": "^4.18.2",
-    "joi": "^17.7.0"
+    "joi": "^17.7.0",
+    "prisma": "^4.9.0"
   },
   "devDependencies": {
     "@prisma/client": "^4.9.0",

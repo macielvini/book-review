@@ -35,6 +35,7 @@ model Review {
   userId  Int @map("user_id")
   user    User @relation(fields: [userId], references: [id])
   comment String 
+  rating  Decimal @default(0) @db.Decimal(1,1)
 
   @@map("reviews")
 }
