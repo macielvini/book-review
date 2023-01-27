@@ -2,6 +2,7 @@ import { conflictError } from "../errors/conflict-error.js";
 import {
   create,
   findAll,
+  findById,
   findByTitle,
 } from "../repositories/books-repository.js";
 
@@ -21,4 +22,8 @@ export async function createBook(
 
 export async function findAllBooks() {
   return await findAll();
+}
+
+export async function findBookById(id: number) {
+  return await findById(id);
 }

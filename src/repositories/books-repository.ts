@@ -18,3 +18,7 @@ export async function findAll(): Promise<BookEntity[]> {
   const data = await prisma.book.findMany();
   return data;
 }
+
+export async function findById(id: number): Promise<BookEntity | null> {
+  return await prisma.book.findFirst({ where: { id: id } });
+}
