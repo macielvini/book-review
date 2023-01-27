@@ -1,4 +1,3 @@
-import { Prisma } from "@prisma/client";
 import { prisma } from "../database/server.js";
 
 export async function create(
@@ -15,4 +14,8 @@ export async function create(
       user: { connect: { id: userId } },
     },
   });
+}
+
+export async function findUserReviews(id: number) {
+  return await prisma.review.findMany({ where: { user: { is: { id: id } } } });
 }
