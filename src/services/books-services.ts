@@ -1,5 +1,9 @@
 import { conflictError } from "../errors/conflict-error.js";
-import { create, findByTitle } from "../repositories/books-repository.js";
+import {
+  create,
+  findAll,
+  findByTitle,
+} from "../repositories/books-repository.js";
 
 export async function createBook(
   title: string,
@@ -13,4 +17,8 @@ export async function createBook(
   }
 
   return await create(title, description, image);
+}
+
+export async function findAllBooks() {
+  return await findAll();
 }

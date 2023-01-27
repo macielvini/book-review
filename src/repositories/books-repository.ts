@@ -13,3 +13,8 @@ export async function findByTitle(title: string): Promise<BookEntity> {
   const data = await prisma.book.findFirst({ where: { title: title } });
   return data;
 }
+
+export async function findAll(): Promise<BookEntity[]> {
+  const data = await prisma.book.findMany();
+  return data;
+}
