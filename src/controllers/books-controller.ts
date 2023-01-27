@@ -10,6 +10,10 @@ export async function bookPost(req: Request, res: Response) {
 
     res.sendStatus(201);
   } catch (error) {
+    if (error.name === "ConflictError") {
+      return res.status(409).send(error);
+    }
+
     console.log(error);
     res.sendStatus(500);
   }
