@@ -11,6 +11,11 @@ export async function userPost(req: Request, res: Response) {
     res.status(201).send(data);
   } catch (error) {
     console.log(error);
+
+    if (error.name === "ConflictError") {
+      return res.status(409).send(error);
+    }
+
     res.sendStatus(500);
   }
 }
