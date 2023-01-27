@@ -12,6 +12,9 @@ export async function postReview(req: Request, res: Response) {
     res.sendStatus(201);
   } catch (error) {
     console.log(error);
+    if (error.name === "NotFoundError") {
+      return res.status(404).send(error);
+    }
     res.sendStatus(500);
   }
 }

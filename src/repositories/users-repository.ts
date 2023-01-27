@@ -9,7 +9,7 @@ export async function findUserByName(name: string): Promise<UserEntity> {
   return data;
 }
 
-export async function findUserById(id: number): Promise<UserEntity> {
+export async function findById(id: number): Promise<UserEntity> {
   const data = await prisma.user.findUnique({ where: { id: id } });
 
   return data;

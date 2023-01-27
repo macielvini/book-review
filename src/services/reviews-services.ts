@@ -1,4 +1,7 @@
+import { NotFoundError } from "@prisma/client/runtime/index.js";
+import { notFoundError } from "../errors/not-found-error.js";
 import { create } from "../repositories/reviews-repository.js";
+import { findUserById } from "./users-services.js";
 
 export async function createReview(
   bookId: number,
@@ -6,5 +9,11 @@ export async function createReview(
   comment: string,
   rating: number
 ) {
+  const userExists = await findUserById(userId);
+
+  if (!userExists) {
+    throw notFoundError("user not found");
+  }
+
   return await create(bookId, userId, comment, rating);
 }
