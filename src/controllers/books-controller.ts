@@ -6,7 +6,7 @@ export async function bookPost(req: Request, res: Response) {
   const body = req.body as Book;
 
   try {
-    const data = await createBook(body.title, body.description, body.image);
+    const data = await createBook(body);
 
     res.sendStatus(201);
   } catch (error) {
