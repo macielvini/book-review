@@ -1,47 +1,66 @@
 import { prisma } from "../src/database/server.js";
 
 async function main() {
-  await prisma.user.createMany({
-    data: [
-      { name: "john green", image: "https://http.cat/401" },
-      { name: "alice brown", image: "https://http.cat/404" },
-    ],
-  });
-
-  await prisma.review.upsert({
-    where: { id: 2 },
+  await prisma.user.upsert({
+    where: { id: 0 },
     update: {},
     create: {
-      comment: "very nice book",
-      rating: 5,
-      book: {
-        create: {
-          description: "learn any script",
-          image: "https://http.cat/307",
-          title: "BookScript",
-        },
-      },
-      user: {
-        connect: { id: 1 },
+      image:
+        "https://img.assinaja.com/upl/lojas/mundosinfinitos/imagens/foto-one-piece.png",
+      name: "Monkey D. Luffy",
+      reviews: {
+        create: [
+          {
+            book: {
+              create: {
+                description: "Boku no Hero - Manga - Vol 1",
+                image: "https://m.media-amazon.com/images/I/71bELfIWTDL.jpg",
+                title: "BNH - Vol1",
+              },
+            },
+            comment: "I love it",
+            rating: 4,
+          },
+          {
+            book: {
+              create: {
+                description: "One Piece - Manga - Chapter 01",
+                image: "https://m.media-amazon.com/images/I/71y+XnBXm4L.jpg",
+                title: "One Piece - 01",
+              },
+            },
+            comment: "Goat",
+            rating: 5,
+          },
+        ],
       },
     },
   });
 
-  await prisma.review.upsert({
-    where: { id: 2 },
+  await prisma.user.upsert({
+    where: { id: 0 },
     update: {},
     create: {
-      comment: "not so cool but ok",
-      rating: 3,
-      book: {
-        create: {
-          description: "two cats were fighting for nothing",
-          image: "https://http.cat/409",
-          title: "CatFight",
-        },
-      },
-      user: {
-        connect: { id: 2 },
+      image:
+        "https://i.pinimg.com/564x/6c/0b/25/6c0b252b8d6c90099f71b49c201c2f60.jpg",
+      name: "Zoro",
+      reviews: {
+        create: [
+          {
+            book: {
+              connect: { id: 1 },
+            },
+            comment: "Too soft for my taste",
+            rating: 3,
+          },
+          {
+            book: {
+              connect: { id: 2 },
+            },
+            comment: "That's my show, sooo...",
+            rating: 5,
+          },
+        ],
       },
     },
   });
