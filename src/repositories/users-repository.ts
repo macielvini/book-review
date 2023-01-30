@@ -1,5 +1,5 @@
 import { prisma } from "../database/server.js";
-import { UserEntity } from "../protocols/users-protocols.js";
+import { User, UserEntity } from "../protocols/users-protocols.js";
 
 export async function findUserByName(name: string): Promise<UserEntity> {
   const data = await prisma.user.findFirst({
@@ -15,11 +15,11 @@ export async function findById(id: number): Promise<UserEntity> {
   return data;
 }
 
-export async function create(name: string, image: string): Promise<UserEntity> {
+export async function create(user: User): Promise<UserEntity> {
   const data = await prisma.user.create({
     data: {
-      name: name,
-      image: image,
+      name: user.name,
+      image: user.image,
     },
   });
   return data;

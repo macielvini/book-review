@@ -6,7 +6,7 @@ export async function userPost(req: Request, res: Response) {
   const body = req.body as User;
 
   try {
-    const data = await createUser(body.name, body.image);
+    const data = await createUser(body);
 
     res.status(201).send(data);
   } catch (error) {
