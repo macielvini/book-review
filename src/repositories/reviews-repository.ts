@@ -1,11 +1,9 @@
 import { prisma } from "../database/server.js";
+import { Review } from "../protocols/reviews-protocols.js";
 
-export async function create(
-  bookId: number,
-  userId: number,
-  comment: string,
-  rating: number
-) {
+export async function create(review: Review) {
+  const { userId, bookId, comment, rating } = review;
+
   return await prisma.review.create({
     data: {
       comment,

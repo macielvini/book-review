@@ -6,16 +6,19 @@ import { createReview } from "../services/reviews-services.js";
 
 export async function postReview(req: Request, res: Response) {
   const body = req.body as Review;
-  const { bookId, userId, comment, rating } = body;
 
   try {
-    await createReview(bookId, userId, comment, rating);
+    await createReview(body);
 
     res.sendStatus(201);
   } catch (error) {
     console.log(error);
     if (error.name === "NotFoundError") {
       return res.status(404).send(error);
+    }
+
+    if (error.name === "BadRequestError") {
+      return res.status(400).send(error);
     }
     res.sendStatus(500);
   }
