@@ -1,5 +1,5 @@
-import { prisma } from "../database/server.js";
-import { Book, BookEntity } from "../protocols/books-protocols.js";
+import { prisma } from "../config/database";
+import { Book, BookEntity } from "../protocols/books-protocols";
 
 export async function create(book: Book): Promise<BookEntity> {
   return await prisma.book.create({ data: book });

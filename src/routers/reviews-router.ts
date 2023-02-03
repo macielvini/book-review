@@ -1,10 +1,7 @@
 import { Router } from "express";
-import {
-  getUserReviews,
-  postReview,
-} from "../controllers/reviews-controller.js";
-import { validateSchema } from "../middlewares/validateSchema.js";
-import { reviewSchema } from "../models/reviews-schema.js";
+import { getUserReviews, postReview } from "../controllers/reviews-controller";
+import { validateSchema } from "../middlewares/validateSchema";
+import { reviewSchema } from "../models/reviews-schema";
 
 export const reviewsRouter = Router();
 

@@ -1,4 +1,4 @@
-import { prisma } from "../src/database/server.js";
+import { prisma } from "../src/config/database";
 
 async function main() {
   await prisma.user.upsert({

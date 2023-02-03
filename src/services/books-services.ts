@@ -1,11 +1,11 @@
-import { conflictError } from "../errors/conflict-error.js";
-import { Book } from "../protocols/books-protocols.js";
+import { conflictError } from "../errors/conflict-error";
+import { Book } from "../protocols/books-protocols";
 import {
   create,
   findAll,
   findById,
   findByTitle,
-} from "../repositories/books-repository.js";
+} from "../repositories/books-repository";
 
 export async function createBook(book: Book) {
   const bookExists = await findByTitle(book.title);

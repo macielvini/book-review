@@ -1,5 +1,5 @@
-import { prisma } from "../database/server.js";
-import { Review } from "../protocols/reviews-protocols.js";
+import { prisma } from "../config/database";
+import { Review } from "../protocols/reviews-protocols";
 
 export async function create(review: Review) {
   const { userId, bookId, comment, rating } = review;

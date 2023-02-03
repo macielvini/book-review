@@ -1,9 +1,9 @@
-import { badRequestError } from "../errors/bad-request-error.js";
-import { notFoundError } from "../errors/not-found-error.js";
-import { Review } from "../protocols/reviews-protocols.js";
-import { create } from "../repositories/reviews-repository.js";
-import { findBookById } from "./books-services.js";
-import { findUserById } from "./users-services.js";
+import { badRequestError } from "../errors/bad-request-error";
+import { notFoundError } from "../errors/not-found-error";
+import { Review } from "../protocols/reviews-protocols";
+import { create } from "../repositories/reviews-repository";
+import { findBookById } from "./books-services";
+import { findUserById } from "./users-services";
 
 export async function createReview(review: Review) {
   const { userId, bookId, comment, rating } = review;

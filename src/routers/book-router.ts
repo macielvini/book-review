@@ -1,7 +1,7 @@
 import { Router } from "express";
-import { bookPost, getAllBooks } from "../controllers/books-controller.js";
-import { validateSchema } from "../middlewares/validateSchema.js";
-import { bookSchema } from "../models/books-schema.js";
+import { bookPost, getAllBooks } from "../controllers/books-controller";
+import { validateSchema } from "../middlewares/validateSchema";
+import { bookSchema } from "../models/books-schema";
 
 const bookRouter = Router();
 

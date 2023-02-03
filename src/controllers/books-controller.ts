@@ -1,6 +1,6 @@
 import { Request, Response } from "express";
-import { Book } from "../protocols/books-protocols.js";
-import { createBook, findAllBooks } from "../services/books-services.js";
+import { Book } from "../protocols/books-protocols";
+import { createBook, findAllBooks } from "../services/books-services";
 
 export async function bookPost(req: Request, res: Response) {
   const body = req.body as Book;

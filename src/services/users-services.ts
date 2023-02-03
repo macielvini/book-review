@@ -1,10 +1,10 @@
-import { conflictError } from "../errors/conflict-error.js";
-import { User } from "../protocols/users-protocols.js";
+import { conflictError } from "../errors/conflict-error";
+import { User } from "../protocols/users-protocols";
 import {
   create,
   findUserByName,
   findById,
-} from "../repositories/users-repository.js";
+} from "../repositories/users-repository";
 
 export async function createUser(user: User) {
   const nameExists = await findUserByName(user.name);

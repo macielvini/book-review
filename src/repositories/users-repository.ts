@@ -1,5 +1,5 @@
-import { prisma } from "../database/server.js";
-import { User, UserEntity } from "../protocols/users-protocols.js";
+import { prisma } from "../config/database";
+import { User, UserEntity } from "../protocols/users-protocols";
 
 export async function findUserByName(name: string): Promise<UserEntity> {
   const data = await prisma.user.findFirst({

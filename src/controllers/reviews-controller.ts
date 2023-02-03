@@ -1,8 +1,8 @@
 import { Request, Response } from "express";
-import { unauthorizedError } from "../errors/unauthorized-error.js";
-import { Review } from "../protocols/reviews-protocols.js";
-import { findUserReviews } from "../repositories/reviews-repository.js";
-import { createReview } from "../services/reviews-services.js";
+import { unauthorizedError } from "../errors/unauthorized-error";
+import { Review } from "../protocols/reviews-protocols";
+import { findUserReviews } from "../repositories/reviews-repository";
+import { createReview } from "../services/reviews-services";
 
 export async function postReview(req: Request, res: Response) {
   const body = req.body as Review;
