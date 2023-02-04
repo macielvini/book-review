@@ -10,7 +10,7 @@ import {
 export async function createBook(book: Book) {
   const bookExists = await findByTitle(book.title);
 
-  if (bookExists?.id) {
+  if (bookExists) {
     throw conflictError("book title already exists");
   }
 
