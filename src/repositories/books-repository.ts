@@ -21,13 +21,18 @@ export type BookReviewed = {
 };
 
 export async function findAll(): Promise<BookReviewed[]> {
-  const data = prisma.$queryRaw<BookReviewed[]>`
-    select b.*,avg(r.rating)::float as "avgRating"
+  const data = await prisma.$queryRaw<BookReviewed[]>`
+    select b.*,
+    json_build_object(
+       'rating', COALESCE(avg(r.rating)::float, 0),
+       'count', count(r.book_id)
+    ) as "review"
     from books b
     left join reviews r
     on b.id = r.book_id
     group by b.id;`;
 
+  console.log(data);
   return data;
 }
 
