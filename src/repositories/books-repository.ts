@@ -6,7 +6,9 @@ export async function create(book: Book): Promise<BookEntity> {
 }
 
 export async function findByTitle(title: string): Promise<BookEntity> {
-  const data = await prisma.book.findFirst({ where: { title: title } });
+  const data = await prisma.book.findFirst({
+    where: { title: { equals: title } },
+  });
   return data;
 }
 
