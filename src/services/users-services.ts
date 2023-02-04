@@ -9,7 +9,7 @@ import {
 export async function createUser(user: User) {
   const nameExists = await findUserByName(user.name);
 
-  if (nameExists?.name) {
+  if (nameExists) {
     throw conflictError("user name already exists");
   }
 

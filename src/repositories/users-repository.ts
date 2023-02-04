@@ -2,8 +2,8 @@ import { prisma } from "../config/database";
 import { User, UserEntity } from "../protocols/users-protocols";
 
 export async function findUserByName(name: string): Promise<UserEntity> {
-  const data = await prisma.user.findFirst({
-    where: { name: { equals: name } },
+  const data = await prisma.user.findUnique({
+    where: { name },
   });
 
   return data;
