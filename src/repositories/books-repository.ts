@@ -32,7 +32,6 @@ export async function findAll(): Promise<BookReviewed[]> {
     on b.id = r.book_id
     group by b.id;`;
 
-  console.log(data);
   return data;
 }
 

@@ -1,8 +1,10 @@
 import app from "app";
 import supertest from "supertest";
 import { cleanDb } from "../helpers";
-import { createBook } from "../factories/books-factory";
+import { createBook, createReview } from "../factories/books-factory";
 import { Book } from "protocols/books-protocols";
+import { BookReviewed } from "repositories/books-repository";
+import { createUser } from "../factories/users-factory";
 
 beforeAll(async () => {
   cleanDb();
@@ -48,5 +50,29 @@ describe("POST /books", () => {
     } as Book);
 
     expect(response.status).toBe(201);
+  });
+});
+
+describe("GET /books", () => {
+  it("Should respond with status 200 and books with review info", async () => {
+    const user = await createUser();
+    const book = await createBook();
+
+    const response = await api.get("/books");
+
+    expect(response.body).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({
+          id: expect.any(Number),
+          title: expect.any(String),
+          description: expect.any(String),
+          image: expect.any(String),
+          review: expect.objectContaining({
+            rating: expect.any(Number),
+            count: expect.any(Number),
+          }),
+        }),
+      ])
+    );
   });
 });
