@@ -3,7 +3,7 @@ import { User, UserEntity } from "../protocols/users-protocols";
 
 export async function findUserByName(name: string): Promise<UserEntity> {
   const data = await prisma.user.findFirst({
-    where: { name: name },
+    where: { name: { equals: name } },
   });
 
   return data;
