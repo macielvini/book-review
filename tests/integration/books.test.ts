@@ -1,21 +1,20 @@
 import app from "app";
 import supertest from "supertest";
 import { cleanDb } from "../helpers";
-import { createBook, createReview } from "../factories/books-factory";
+import { createBook } from "../factories/books-factory";
 import { Book } from "protocols/books-protocols";
-import { BookReviewed } from "repositories/books-repository";
 import { createUser } from "../factories/users-factory";
 
 beforeAll(async () => {
-  cleanDb();
+  await cleanDb();
 });
 
 beforeEach(async () => {
-  cleanDb();
+  await cleanDb();
 });
 
 afterAll(async () => {
-  cleanDb();
+  await cleanDb();
 });
 
 const api = supertest(app);

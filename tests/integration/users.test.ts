@@ -6,15 +6,15 @@ import { createUser } from "../factories/users-factory";
 const api = supertest(app);
 
 beforeAll(async () => {
-  cleanDb();
+  await cleanDb();
 });
 
 beforeEach(async () => {
-  cleanDb();
+  await cleanDb();
 });
 
 afterAll(async () => {
-  cleanDb();
+  await cleanDb();
 });
 
 describe("POST /users", () => {
@@ -22,15 +22,6 @@ describe("POST /users", () => {
     const response = await api.post("/users").send({ name: "", image: "" });
 
     expect(response.status).toBe(422);
-  });
-
-  it("Should respond with status 409 if user name already exists", async () => {
-    const user = await createUser();
-    const response = await api
-      .post("/users")
-      .send({ name: user.name, image: user.image });
-
-    expect(response.status).toBe(409);
   });
 
   it("Should respond with status 200 and user data", async () => {
@@ -44,5 +35,14 @@ describe("POST /users", () => {
       name: expect.any(String),
       image: expect.any(String),
     });
+  });
+
+  it("Should respond with status 409 if user name already exists", async () => {
+    const user = await createUser();
+    const response = await api
+      .post("/users")
+      .send({ name: user.name, image: user.image });
+
+    expect(response.status).toBe(409);
   });
 });
